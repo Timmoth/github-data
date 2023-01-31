@@ -1,8 +1,11 @@
 # github-data
 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
-🚧This repo is a work in progress, check back soon! 🚧
-🚧The goal of this project is still unclear to me   🚧
-🚧At the moment I'm just investigating writing my   🚧
-🚧own github action, we'll see what it turns into   🚧
+
+This repo is a work in progress, check back soon!
+
 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
+
+I've still not set a clear goals / targets for this repo, at this point I'm just investigating writing my own github actions, we'll see what it turns into in the future!
+
+
 
