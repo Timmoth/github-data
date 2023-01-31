@@ -32,7 +32,7 @@ jobs:
 
     - name: .NET code metrics
       id: dotnet-code-metrics
-      uses: GithubAction@main
+      uses: Timmoth/github-data@main
       with:
         owner: ${{ github.repository_owner }}
         name: ${{ github.repository }}
