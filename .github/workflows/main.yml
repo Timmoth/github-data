@@ -40,7 +40,7 @@ jobs:
         dir: ${{ './GithubAction/GithubAction' }}
       
     - name: Create pull request
-      uses: timmoth/create-pull-request@v4
+      uses: peter-evans/create-pull-request@v4
       if: ${{ steps.dotnet-code-metrics.outputs.updated-metrics }} == 'true'
       with:
         title: '${{ steps.dotnet-code-metrics.outputs.summary-title }}'
