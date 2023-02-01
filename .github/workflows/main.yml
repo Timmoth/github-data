@@ -35,4 +35,4 @@ jobs:
         with:
           title: "${{ steps.dotnet-custom-action.outputs.summary-title }}"
           body: "${{ steps.dotnet-custom-action.outputs.summary-details }}"
-          commit-message: ".NET code metrics, automated pull request."
+          commit-message: "automated pull request."
