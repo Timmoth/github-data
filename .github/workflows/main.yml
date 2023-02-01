@@ -33,7 +33,7 @@ jobs:
       - name: Create pull request
         uses: peter-evans/create-pull-request@v4
         with:
-          token: ${{ secrets.PAT }}
-          title: "${{ steps.dotnet-custom-action.outputs.summary-title }}"
-          body: "${{ steps.dotnet-custom-action.outputs.summary-details }}"
-          commit-message: "automated pull request."
+          commit-message: new pr commit-message
+          title: new pr title
+          body: new pr body
+          branch: github-action-branch
