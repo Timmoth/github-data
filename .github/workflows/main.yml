@@ -32,12 +32,6 @@ jobs:
         with:
           name: ${{ github.repository }}
 
-      - name: Run custom Github action
-        id: dotnet-custom-action
-        uses: Timmoth/github-data@main
-        with:
-          name: ${{ github.repository }}
-
       - name: Create pull request
         uses: peter-evans/create-pull-request@v4
         with:
