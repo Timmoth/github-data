@@ -1,5 +1,5 @@
-name: '.NET code metric analyzer'
-description: 'A Github action that maintains a CODE_METRICS.md file, reporting cyclomatic complexity, maintainability index, etc.'
+name: 'Test Github Action'
+description: 'A Github that i'm currently using as a test platform'
 branding:
   icon: sliders
   color: purple
