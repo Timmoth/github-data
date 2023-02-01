@@ -28,4 +28,5 @@ jobs:
           commit-message: new pr commit-message
           title: new pr title
           body: new pr body
+          base: main
           branch: github-action-branch
