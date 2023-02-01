@@ -25,6 +25,9 @@ jobs:
         run: dotnet build --configuration Release --no-restore
       - name: Run
         run: dotnet run --project GithubAction
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Commit to the repo
         run: |
