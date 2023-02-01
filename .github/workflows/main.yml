@@ -3,16 +3,8 @@ name: "Test Github workflow"
 
 on:
   push:
-    branches: [main]
-    paths:
-      - "GithubAction/GithubAction/**" # run on all changes to this dir
-      - "!GithubAction/GithubAction/CODE_METRICS.md" # ignore this file
-  workflow_dispatch:
-    inputs:
-      reason:
-        description: "I manually started the workflow"
-        required: true
-        default: "Manual run"
+    branches:
+      - main
 
 jobs:
   analysis:
