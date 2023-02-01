@@ -28,10 +28,7 @@ jobs:
         id: dotnet-custom-action
         uses: Timmoth/github-data@main
         with:
-          owner: ${{ github.repository_owner }}
           name: ${{ github.repository }}
-          branch: ${{ github.ref }}
-          dir: ${{ './GithubAction/GithubAction' }}
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@v4
