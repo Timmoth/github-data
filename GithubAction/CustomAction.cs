@@ -35,6 +35,8 @@ public sealed class CustomAction
             textWriter.WriteLine($"summary-details={summary}");
         }
 
+        File.WriteAllText($"./{DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss")}.txt", "hello, world!");
+
         logger.LogInformation("End");
         return Task.CompletedTask;
     }

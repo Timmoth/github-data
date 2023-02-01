@@ -26,17 +26,11 @@ jobs:
       - name: Run
         run: dotnet run --project GithubAction
 
-      - name: Run custom Github action
-        id: dotnet-custom-action
-        uses: Timmoth/github-data@main
-        with:
-          name: ${{ github.repository }}
-
-      - name: Create pull request
-        uses: peter-evans/create-pull-request@v4
-        with:
-          commit-message: new pr commit-message
-          title: new pr title
-          body: new pr body
-          branch: main
-          base: github-action-branch
+      - name: Commit to the repo
+        run: |
+          git config --global user.name "timmoth/github-data"
+          git config --global user.email "github-data[bot]@timmoth.github.io"
+          git add .
+          # Force the build to succeed, even if no files were changed
+          git commit -m 'Update generated files' || true
+          git push
