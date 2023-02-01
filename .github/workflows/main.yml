@@ -1,48 +1,42 @@
 # The name of the work flow. Badges will use this name
-name: '.NET code metrics'
+name: "Test Github workflow"
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
     paths:
-    - 'GithubAction/GithubAction/**'               # run on all changes to this dir
-    - '!GithubAction/GithubAction/CODE_METRICS.md' # ignore this file
+      - "GithubAction/GithubAction/**" # run on all changes to this dir
+      - "!GithubAction/GithubAction/CODE_METRICS.md" # ignore this file
   workflow_dispatch:
     inputs:
       reason:
-        description: 'The reason for running the workflow'
+        description: "I manually started the workflow"
         required: true
-        default: 'Manual run'
+        default: "Manual run"
 
 jobs:
   analysis:
-
     runs-on: ubuntu-latest
     permissions:
       contents: write
       pull-requests: write
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: 'Print manual run reason'
-      if: ${{ github.event_name == 'workflow_dispatch' }}
-      run: |
-        echo 'Reason: ${{ github.event.inputs.reason }}'
+      - name: Run custom Github action
+        id: dotnet-custom-action
+        uses: Timmoth/github-data@main
+        with:
+          owner: ${{ github.repository_owner }}
+          name: ${{ github.repository }}
+          branch: ${{ github.ref }}
+          dir: ${{ './GithubAction/GithubAction' }}
 
-    - name: .NET code metrics
-      id: dotnet-code-metrics
-      uses: Timmoth/github-data@main
-      with:
-        owner: ${{ github.repository_owner }}
-        name: ${{ github.repository }}
-        branch: ${{ github.ref }}
-        dir: ${{ './GithubAction/GithubAction' }}
-      
-    - name: Create pull request
-      uses: peter-evans/create-pull-request@v4
-      if: ${{ steps.dotnet-code-metrics.outputs.updated-metrics }} == 'true'
-      with:
-        title: '${{ steps.dotnet-code-metrics.outputs.summary-title }}'
-        body: '${{ steps.dotnet-code-metrics.outputs.summary-details }}'
-        commit-message: '.NET code metrics, automated pull request.'
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v4
+        if: ${{ steps.dotnet-code-metrics.outputs.updated-metrics }} == 'true'
+        with:
+          title: "${{ steps.dotnet-code-metrics.outputs.summary-title }}"
+          body: "${{ steps.dotnet-code-metrics.outputs.summary-details }}"
+          commit-message: ".NET code metrics, automated pull request."
