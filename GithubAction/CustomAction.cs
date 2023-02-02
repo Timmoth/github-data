@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using CommandLine;
 using GithubAction;
 using Microsoft.Extensions.Logging;
 using Octokit;
@@ -39,9 +40,16 @@ public sealed class CustomAction
         var client = new GitHubClient(new ProductHeaderValue("github-action"));
         var accessToken = Environment.GetEnvironmentVariable("ACCESS_TOKEN");
         client.Credentials = new Credentials(accessToken);
-        var followerCount = (await client.User.Followers.GetAllFollowing("timmoth")).Count;
-
-        File.WriteAllText($"./{DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss")}.txt", $"Followers: '{followerCount}'");
+        var followerCount = (await client.User.Followers.GetAll("timmoth")).Count;
+        var a = await client.User.Get("timmoth");
+        
+        var aa = await client.Activity.Events.GetAllUserPerformed("timmoth");
+        var output = new StringBuilder();
+        foreach( var e in aa)
+        {
+            output.AppendLine($"{e.CreatedAt} - {e.Repo.Name} {e.Type}");
+        }
+        File.WriteAllText($"./{DateTime.Now:yyyy-dd-M--HH-mm-ss}.txt", output.ToString());
 
         logger.LogInformation("End");
     }
