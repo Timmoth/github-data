@@ -43,13 +43,17 @@ public sealed class CustomAction
         var followerCount = (await client.User.Followers.GetAll("timmoth")).Count;
         var a = await client.User.Get("timmoth");
         
-        var aa = await client.Activity.Events.GetAllUserPerformed("timmoth");
+        var aa = await client.Activity.Events.GetAllUserPerformed("timmoth", new ApiOptions()
+        {
+            PageSize = 100,
+            PageCount = 100
+        });
         var output = new StringBuilder();
         foreach( var e in aa)
         {
             output.AppendLine($"{e.CreatedAt} - {e.Repo.Name} {e.Type}");
         }
-        File.WriteAllText($"./{DateTime.Now:yyyy-dd-M--HH-mm-ss}.txt", output.ToString());
+        File.WriteAllText($"./activity.txt", output.ToString());
 
         logger.LogInformation("End");
     }
